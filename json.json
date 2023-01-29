@@ -1,0 +1,12 @@
+{
+    "regla2": {
+        "premisas": {
+            "foo2": true,
+            "bar": false,
+            "jhon": false
+        },
+        "diagnostico": "kevin",
+        "status": "sin valor",
+        "porcentaje": 0
+    }
+}
