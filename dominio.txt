@@ -1,0 +1,15 @@
+1: mamifero
+-el animal tiene cabello
+entonces:
+*el animal es un mamifero 
+
+2: mamifero
+-el animal produce leche
+Entonces:
+*el animal es un mamifero
+
+8: leon
+-el animal es un mamifero
+-el animal es carnivoro
+entonces:
+*el animal es un leon
