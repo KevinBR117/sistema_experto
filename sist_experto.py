@@ -1,13 +1,13 @@
-reglas = ['5',
-          [
-              {
-                  "tiene cabello": None
-              }
-          ],
-          "El animal es un mamifero",
-          "sin valor",
-          0
-          ]
+# reglas = ['5',
+#           [
+#               {
+#                   "tiene cabello": None
+#               }
+#           ],
+#           "El animal es un mamifero",
+#           "sin valor",
+#           0
+#           ]
 
 # reglas[1].append({"produce leche": None})
 # reglas[1].append({"es domestico": None})
@@ -19,7 +19,6 @@ with open('./dominio.txt') as archivo:
     regla = []
     for linea in archivo:
         # print(linea)
-
         # identificar si es regla
         if any(map(str.isdigit, linea)):
             numero_regla = linea.replace('\n', '').replace(':', '').split(' ')
@@ -43,6 +42,10 @@ with open('./dominio.txt') as archivo:
             regla.append(0)
             reglas.append(regla)
             regla = []
+
+
+
+
 
 for regla in reglas:
     print(f'Regla: {regla}')
