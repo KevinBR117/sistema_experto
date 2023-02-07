@@ -5,7 +5,7 @@ entonces:
 
 2: mamifero
 -el animal produce leche
-Entonces:
+entonces:
 *el animal es un mamifero
 
 8: leon

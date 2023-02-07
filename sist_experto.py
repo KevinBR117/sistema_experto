@@ -13,10 +13,14 @@
 # reglas[1].append({"es domestico": None})
 # print(reglas)
 
+# print(reglas[1][0])
+# print(reglas[1].keys())
+
 reglas = []
-with open('./dominio.txt') as archivo:
+with open('./sistema_experto/dominio.txt') as archivo:
     # crear regla
     regla = []
+    dicccionario = {}
     for linea in archivo:
         # print(linea)
         # identificar si es regla
@@ -24,18 +28,14 @@ with open('./dominio.txt') as archivo:
             numero_regla = linea.replace('\n', '').replace(':', '').split(' ')
             if(numero_regla[0].isdigit()):
                 regla.append(numero_regla[0])
-        # condicion o diagnostico
+        # condicion
         elif(linea.startswith('-')):
-            # si no existe la casilla de premisas
-            if(len(regla) < 2):
-                regla.append([{linea.replace(
-                    '\n', '').replace('-', ''): None}])
-                # print('regla actual', regla)
-            else:
-                regla[1].append({linea.replace(
-                    '\n', '').replace('-', ''): None})
+            dicccionario.setdefault(linea.replace(
+                '\n', '').replace('-', ''), None)
         elif(linea == 'entonces:\n'):
-            continue
+            regla.append(dicccionario)
+            dicccionario = {}
+            # continue
         elif(linea.startswith('*')):
             regla.append(linea.replace('\n', '').replace('*', ''))
             regla.append("sin valor")
@@ -44,8 +44,41 @@ with open('./dominio.txt') as archivo:
             regla = []
 
 
+def mostrar_reglas():
+    for regla in reglas:
+        print(f'Regla: {regla}')
+        # print('el animal tiene cabello' in regla[1])
 
 
+def leer_premisas():
+    premisas = input('¿Que caracteristicas tiene el amimal? ')
+    return premisas.split(', ')
 
-for regla in reglas:
-    print(f'Regla: {regla}')
+
+def buscar_reglasAptas(premisas):
+    print(f'premisas iniciales: {premisas}')
+    for regla in reglas:
+        dict = regla[1].keys()
+        llaves_verdaderas = []
+        for premisa in premisas:
+            for key in dict:
+                if (premisa in key):
+                    # actualizar diccionario
+                    print('key ',key)
+                    llaves_verdaderas.append(key)
+                    # regla[1].update(key=True)
+                    # print(regla[1].keys())
+        for llave in llaves_verdaderas:
+            regla[1].update({llave: True})
+
+    
+
+
+def main():
+    mostrar_reglas()
+    buscar_reglasAptas(leer_premisas())
+    mostrar_reglas()
+
+
+if __name__ == '__main__':
+    main()
