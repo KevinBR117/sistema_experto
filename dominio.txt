@@ -8,8 +8,14 @@ entonces:
 entonces:
 *el animal es un mamifero
 
-8: leon
--el animal es un mamifero
--el animal es carnivoro
+3: carnivoro
+-el animal come carne
 entonces:
-*el animal es un leon
+*el animal es un carnivoro
+
+4: carnivoro
+-el animal tiene garras
+-el animal tiene los ojos al frente
+-el animal tiene los dientes filosos
+entonces:
+*el animal es un carnivoro

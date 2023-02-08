@@ -64,14 +64,12 @@ def buscar_reglasAptas(premisas):
             for key in dict:
                 if (premisa in key):
                     # actualizar diccionario
-                    print('key ',key)
+                    print('key ', key)
                     llaves_verdaderas.append(key)
                     # regla[1].update(key=True)
                     # print(regla[1].keys())
         for llave in llaves_verdaderas:
             regla[1].update({llave: True})
-
-    
 
 
 def main():
