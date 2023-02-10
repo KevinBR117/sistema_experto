@@ -16,14 +16,15 @@
 # print(reglas[1][0])
 # print(reglas[1].keys())
 
-
-
+from dominio import reglas
 
 
 def mostrar_reglas():
-    for regla in reglas:
-        print(f'Regla: {regla}')
+    # for regla in reglas:
+    #     print(f'Regla: {regla}')
         # print('el animal tiene cabello' in regla[1])
+    for regla in reglas:
+        print(f'{regla.get_regla()}\n')
 
 
 def leer_premisas():
@@ -32,26 +33,31 @@ def leer_premisas():
 
 
 def buscar_reglasAptas(premisas):
-    print(f'premisas iniciales: {premisas}')
+    print(f'premisas iniciales: {premisas} \n')
     for regla in reglas:
-        dict = regla[1].keys()
+        # dict = regla[1].keys()
+        dict = regla.condiciones.keys()
         llaves_verdaderas = []
         for premisa in premisas:
             for key in dict:
                 if (premisa in key):
                     # actualizar diccionario
-                    print('key ', key)
+                    print('key verdadera', key)
                     llaves_verdaderas.append(key)
                     # regla[1].update(key=True)
                     # print(regla[1].keys())
         for llave in llaves_verdaderas:
-            regla[1].update({llave: True})
+            regla.condiciones.update({llave: True})
+        
+    print('Reglas actualizadas \n')
+    mostrar_reglas()
+    print(reglas[2].get_regla())
 
 
 def main():
     mostrar_reglas()
     buscar_reglasAptas(leer_premisas())
-    mostrar_reglas()
+    # mostrar_reglas()
 
 
 if __name__ == '__main__':

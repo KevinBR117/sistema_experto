@@ -23,13 +23,12 @@ with open('./sistema_experto/dominio.txt') as archivo:
         elif(linea.startswith('*')):
             regla.append(linea.replace('\n', '').replace('*', ''))
             regla.append("sin valor")
-            regla.append(0)
+            # regla.append(0)
 
             # objeto 
             reglas.append(Regla(regla))
             regla = []
 
-for regla in reglas:
-    print(regla.get_regla())
+
 
             
