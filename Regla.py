@@ -9,6 +9,9 @@ class Regla():
     def get_regla(self):
         return (self.regla, self.condiciones, self.diagnostico, self.valor, self.porcentaje)
 
+    def __gt__(self, regla):
+        return (self.porcentaje < regla.porcentaje), (len(self.condiciones) > len(regla.condiciones))
+
     def actualiza_porcentaje(self):
         verdaderas = 0
         for key in self.condiciones.values():
@@ -21,14 +24,10 @@ class Regla():
 
         if(verdaderas/len(self.condiciones) == 1.0):
             self.acepta_regla()
-        
         self.porcentaje = verdaderas/len(self.condiciones)
-        
 
     def descarta_regla(self):
         self.valor = 'falso'
 
     def acepta_regla(self):
-        # print('cambia valor a verdadero')
         self.valor = 'verdadero'
-        # print(self.valor)

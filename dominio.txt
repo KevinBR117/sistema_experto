@@ -19,3 +19,12 @@ entonces:
 -el animal tiene los dientes filosos
 entonces:
 *el animal es un carnivoro
+
+8: leon
+-el animal es un mamifero
+-el animal es un carnivoro
+-el animal es un felino
+-el animal es amarillo
+-el animal tiene melena
+entonces:
+*el animal es un leon
