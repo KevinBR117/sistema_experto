@@ -23,7 +23,7 @@ def mostrar_reglas():
     # for regla in reglas:
     #     print(f'Regla: {regla}')
         # print('el animal tiene cabello' in regla[1])
-    for regla in reglas:
+    for regla in reglas[0:1]:
         print(f'{regla.get_regla()}\n')
 
 
@@ -49,15 +49,18 @@ def buscar_reglasAptas(premisas):
         for llave in llaves_verdaderas:
             regla.condiciones.update({llave: True})
         
+        regla.actualiza_porcentaje()
+            
+
     print('Reglas actualizadas \n')
     mostrar_reglas()
-    print(reglas[2].get_regla())
+    # print(reglas[0].get_regla())
 
 
 def main():
     mostrar_reglas()
     buscar_reglasAptas(leer_premisas())
-    # mostrar_reglas()
+    mostrar_reglas()
 
 
 if __name__ == '__main__':
