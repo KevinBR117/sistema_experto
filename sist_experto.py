@@ -103,35 +103,25 @@ def generar_preguntas(regla_seleccionada):
                 regla_seleccionada.actualiza_porcentaje()
                 regla_seleccionada.descarta_regla()
                 break
-                
+                    
     if (regla_seleccionada.valor == 'verdadero'):
+        
+
+
         print('Fin de preguntas')
         print(regla_seleccionada.diagnostico)
         print(regla_seleccionada.get_regla())
-        
-        # if(regla_seleccionada.valor != 'falso'):
-        #     if(regla_seleccionada == False):
-        #         pass
-            
-        
-
 
         
-    #     if (condicion == True):
-    #         print('none')
-    #     # print('condicion: ', condicion)
-        
 
-
+encontrado = False
 def main():
-    
     mostrar_reglas()
-    
-    
     buscar_reglasAptas(leer_premisas())
     buscar_reglasSeriadas()
-    ordenar_reglas()
-    generar_preguntas(seleccionar_regla())
+    while(encontrado == False):
+        ordenar_reglas()
+        generar_preguntas(seleccionar_regla())
 
     # print(seleccionar_regla())
 
