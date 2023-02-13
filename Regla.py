@@ -9,17 +9,26 @@ class Regla():
     def get_regla(self):
         return (self.regla, self.condiciones, self.diagnostico, self.valor, self.porcentaje)
 
+    def get_condiciones_verdaderas(self):
+        verdaderas = 0
+        for value in self.condiciones.values():
+            if (value == True):
+                verdaderas += 1
+
+        return verdaderas
+
     def __gt__(self, regla):
-        return (self.porcentaje < regla.porcentaje), (len(self.condiciones) > len(regla.condiciones))
+        return (self.porcentaje < regla.porcentaje)
+        # return (self.porcentaje < regla.porcentaje), (self.get_condiciones_verdaderas() < regla.get_condiciones_verdaderas())
 
     def actualiza_porcentaje(self):
         verdaderas = 0
-        for key in self.condiciones.values():
-            # print(key)
-            if (key == True):
+        for value in self.condiciones.values():
+            # print(value)
+            if (value == True):
                 verdaderas += 1
 
-            elif(key == False):
+            elif(value == False):
                 self.descarta_regla()
 
         if(verdaderas/len(self.condiciones) == 1.0):

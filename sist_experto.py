@@ -65,9 +65,6 @@ def buscar_reglasSeriadas():
     # print(reglas[0].get_regla())
 
 
-# def get_porcentaje(element):
-#     return element
-
 def ordenar_reglas():
     global reglas
     reglas = sorted(reglas)
@@ -75,11 +72,69 @@ def ordenar_reglas():
     mostrar_reglas()
 
 
+def seleccionar_regla():
+    # print('seleccionar regla')
+    regla_seleccionada = reglas[0]
+    for regla in reglas:
+        if (regla.valor == 'sin valor'):
+            regla_seleccionada = regla
+    
+    for regla in reglas:
+        if(regla.valor == 'sin valor' and regla.porcentaje > regla_seleccionada.porcentaje):
+            regla_seleccionada = regla
+    
+    print('regla seleccionada: ', regla_seleccionada.get_regla())
+    return regla_seleccionada
+
+def generar_preguntas(regla_seleccionada):
+    # print(regla_seleccionada.condiciones)
+    print(regla_seleccionada.condiciones)
+    for condicion in regla_seleccionada.condiciones:
+        if (regla_seleccionada.condiciones[condicion] == None):
+            respuesta = (input(f'¿{condicion}? ')).lower()
+            # print('respuesta', respuesta)
+            if (respuesta == 'si'):
+                # print(type(respuesta))
+                regla_seleccionada.condiciones.update({condicion: True})
+                regla_seleccionada.actualiza_porcentaje()
+
+            elif (respuesta == 'no'):
+                regla_seleccionada.condiciones.update({condicion: False})
+                regla_seleccionada.actualiza_porcentaje()
+                regla_seleccionada.descarta_regla()
+                break
+                
+    if (regla_seleccionada.valor == 'verdadero'):
+        print('Fin de preguntas')
+        print(regla_seleccionada.diagnostico)
+        print(regla_seleccionada.get_regla())
+        
+        # if(regla_seleccionada.valor != 'falso'):
+        #     if(regla_seleccionada == False):
+        #         pass
+            
+        
+
+
+        
+    #     if (condicion == True):
+    #         print('none')
+    #     # print('condicion: ', condicion)
+        
+
+
 def main():
+    
     mostrar_reglas()
+    
+    
     buscar_reglasAptas(leer_premisas())
     buscar_reglasSeriadas()
     ordenar_reglas()
+    generar_preguntas(seleccionar_regla())
+
+    # print(seleccionar_regla())
+
 
 
 if __name__ == '__main__':

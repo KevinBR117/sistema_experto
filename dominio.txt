@@ -20,6 +20,12 @@ entonces:
 entonces:
 *el animal es un carnivoro
 
+5: felino
+-el animal maulla o ruge
+-el animal no es un ser inteligente
+entonces:
+*el animal es un felino
+
 8: leon
 -el animal es un mamifero
 -el animal es un carnivoro
