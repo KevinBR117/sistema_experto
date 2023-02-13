@@ -59,7 +59,7 @@ def seleccionar_regla():
         if(regla.valor == 'sin valor' and regla.porcentaje > regla_seleccionada.porcentaje):
             regla_seleccionada = regla
 
-    print('regla seleccionada: ', regla_seleccionada.get_regla())
+    print('Regla seleccionada: ', regla_seleccionada.get_regla())
     return regla_seleccionada
 
 
@@ -67,26 +67,41 @@ def generar_preguntas(regla_seleccionada):
     global encontrado
     for condicion in regla_seleccionada.condiciones:
         if (regla_seleccionada.condiciones[condicion] == None):
-            respuesta = (input(f'¿{condicion}? ')).lower()
-            if (respuesta == 'si'):
-                regla_seleccionada.condiciones.update({condicion: True})
-                regla_seleccionada.actualiza_porcentaje()
+            regla_general = regla_general(regla_seleccionada)
+            
+            if(regla_general != False):
+                generar_preguntas(regla_general)
+            
+            else:
+                respuesta = (input(f'¿{condicion}? ')).lower()
+                
+                if (respuesta == 'si'):
+                    regla_seleccionada.condiciones.update({condicion: True})
+                    regla_seleccionada.actualiza_porcentaje()
 
-            elif (respuesta == 'no'):
-                regla_seleccionada.condiciones.update({condicion: False})
-                regla_seleccionada.actualiza_porcentaje()
-                regla_seleccionada.descarta_regla()
-                break
+                elif (respuesta == 'no'):
+                    regla_seleccionada.condiciones.update({condicion: False})
+                    regla_seleccionada.actualiza_porcentaje()
+                    regla_seleccionada.descarta_regla()
+                    break
 
     if (regla_seleccionada.valor == 'verdadero'):
-        encontrado = reglaParticular(regla_seleccionada)
+        encontrado = regla_particular(regla_seleccionada)
         if(encontrado == True):
             print('Fin de preguntas\n')
             print(regla_seleccionada.diagnostico, '\n')
             print(regla_seleccionada.get_regla(), '\n')
 
 
-def reglaParticular(regla_seleccionada):
+def regla_general(regla_seleccionada):
+    for regla in reglas:
+        for key in regla_seleccionada.condiciones.keys():
+            if(key in regla.diagnostico):
+                return regla
+    return False
+
+
+def regla_particular(regla_seleccionada):
     for regla in reglas:
         for key in regla.condiciones.keys():
             if (key in regla_seleccionada.diagnostico):
@@ -104,7 +119,7 @@ def main():
         buscar_reglasSeriadas()
         ordenar_reglas()
         generar_preguntas(seleccionar_regla())
-    print('La ejecucion ha terminado')
+    print('La ejecución ha terminado')
 
 
 if __name__ == '__main__':
