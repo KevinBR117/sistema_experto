@@ -1,21 +1,3 @@
-# reglas = ['5',
-#           [
-#               {
-#                   "tiene cabello": None
-#               }
-#           ],
-#           "El animal es un mamifero",
-#           "sin valor",
-#           0
-#           ]
-
-# reglas[1].append({"produce leche": None})
-# reglas[1].append({"es domestico": None})
-# print(reglas)
-
-# print(reglas[1][0])
-# print(reglas[1].keys())
-
 from dominio import reglas
 
 
@@ -32,7 +14,6 @@ def leer_premisas():
 def buscar_reglasAptas(premisas):
     print(f'premisas iniciales: {premisas} \n')
     for regla in reglas:
-        # dict = regla[1].keys()
         dict = regla.condiciones.keys()
         llaves_verdaderas = []
         for premisa in premisas:
@@ -41,11 +22,8 @@ def buscar_reglasAptas(premisas):
                     # actualizar diccionario
                     print('key verdadera', key)
                     llaves_verdaderas.append(key)
-                    # regla[1].update(key=True)
-                    # print(regla[1].keys())
         for llave in llaves_verdaderas:
             regla.condiciones.update({llave: True})
-
         regla.actualiza_porcentaje()
 
 
@@ -62,7 +40,6 @@ def buscar_reglasSeriadas():
 
     print('Reglas actualizadas: \n')
     mostrar_reglas()
-    # print(reglas[0].get_regla())
 
 
 def ordenar_reglas():
@@ -73,28 +50,25 @@ def ordenar_reglas():
 
 
 def seleccionar_regla():
-    # print('seleccionar regla')
     regla_seleccionada = reglas[0]
     for regla in reglas:
         if (regla.valor == 'sin valor'):
             regla_seleccionada = regla
-    
+
     for regla in reglas:
         if(regla.valor == 'sin valor' and regla.porcentaje > regla_seleccionada.porcentaje):
             regla_seleccionada = regla
-    
+
     print('regla seleccionada: ', regla_seleccionada.get_regla())
     return regla_seleccionada
 
+
 def generar_preguntas(regla_seleccionada):
-    # print(regla_seleccionada.condiciones)
-    print(regla_seleccionada.condiciones)
+    global encontrado
     for condicion in regla_seleccionada.condiciones:
         if (regla_seleccionada.condiciones[condicion] == None):
             respuesta = (input(f'¿{condicion}? ')).lower()
-            # print('respuesta', respuesta)
             if (respuesta == 'si'):
-                # print(type(respuesta))
                 regla_seleccionada.condiciones.update({condicion: True})
                 regla_seleccionada.actualiza_porcentaje()
 
@@ -103,28 +77,34 @@ def generar_preguntas(regla_seleccionada):
                 regla_seleccionada.actualiza_porcentaje()
                 regla_seleccionada.descarta_regla()
                 break
-                    
+
     if (regla_seleccionada.valor == 'verdadero'):
-        
+        encontrado = reglaParticular(regla_seleccionada)
+        if(encontrado == True):
+            print('Fin de preguntas\n')
+            print(regla_seleccionada.diagnostico, '\n')
+            print(regla_seleccionada.get_regla(), '\n')
 
 
-        print('Fin de preguntas')
-        print(regla_seleccionada.diagnostico)
-        print(regla_seleccionada.get_regla())
+def reglaParticular(regla_seleccionada):
+    for regla in reglas:
+        for key in regla.condiciones.keys():
+            if (key in regla_seleccionada.diagnostico):
+                return False
+    return True
 
-        
 
 encontrado = False
+
+
 def main():
     mostrar_reglas()
     buscar_reglasAptas(leer_premisas())
-    buscar_reglasSeriadas()
     while(encontrado == False):
+        buscar_reglasSeriadas()
         ordenar_reglas()
         generar_preguntas(seleccionar_regla())
-
-    # print(seleccionar_regla())
-
+    print('La ejecucion ha terminado')
 
 
 if __name__ == '__main__':

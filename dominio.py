@@ -12,7 +12,7 @@ with open('./sistema_experto/dominio.txt') as archivo:
             numero_regla = linea.replace('\n', '').replace(':', '').split(' ')
             if(numero_regla[0].isdigit()):
                 regla.append(numero_regla[0])
-        # condicion
+        # identificar si es condicion
         elif(linea.startswith('-')):
             dicccionario.setdefault(linea.replace(
                 '\n', '').replace('-', ''), None)
@@ -20,15 +20,10 @@ with open('./sistema_experto/dominio.txt') as archivo:
             regla.append(dicccionario)
             dicccionario = {}
             # continue
+        # identificar si es diagnostico
         elif(linea.startswith('*')):
             regla.append(linea.replace('\n', '').replace('*', ''))
             regla.append("sin valor")
-            # regla.append(0)
-
-            # objeto 
+            # objeto
             reglas.append(Regla(regla))
             regla = []
-
-
-
-            
