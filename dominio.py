@@ -1,7 +1,7 @@
 from Regla import Regla
 
 reglas = []
-with open('./sistema_experto/dominio.txt') as archivo:
+with open('./dominio.txt') as archivo:
     # crear regla
     regla = []
     dicccionario = {}

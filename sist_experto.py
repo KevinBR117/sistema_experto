@@ -71,7 +71,7 @@ def seleccionar_regla():
 
 def generar_preguntas(regla_seleccionada):
     global encontrado
-    print('generar preguntas')
+    print('Generando preguntas: \n')
     r_general = object()
 
     for condicion in regla_seleccionada.condiciones:
@@ -80,7 +80,7 @@ def generar_preguntas(regla_seleccionada):
             # sys.exit('termina ejecucion de manera forzada')
 
             if(r_general != False):
-                print('regla general: ',r_general.get_regla())
+                print('Regla general: ',r_general.get_regla())
                 # print('if')
                 break
 
