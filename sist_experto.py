@@ -1,5 +1,5 @@
-from dominio import reglas
-
+from dominio import reglas,Regla
+import sys
 
 def mostrar_reglas():
     for regla in reglas:
@@ -37,6 +37,12 @@ def buscar_reglasSeriadas():
                     if (key in diagnostico):
                         r.condiciones.update({key: True})
                 r.actualiza_porcentaje()
+            
+                if (r.diagnostico in diagnostico):
+                    r.valor = 'verdadero'
+                    for key in r.condiciones.keys():
+                        r.condiciones.update({key: True})
+                    r.actualiza_porcentaje()
 
     print('Reglas actualizadas: \n')
     mostrar_reglas()
@@ -65,16 +71,22 @@ def seleccionar_regla():
 
 def generar_preguntas(regla_seleccionada):
     global encontrado
+    print('generar preguntas')
+    r_general = object()
+
     for condicion in regla_seleccionada.condiciones:
         if (regla_seleccionada.condiciones[condicion] == None):
-            regla_general = regla_general(regla_seleccionada)
-            
-            if(regla_general != False):
-                generar_preguntas(regla_general)
-            
+            r_general = regla_general(regla_seleccionada)
+            # sys.exit('termina ejecucion de manera forzada')
+
+            if(r_general != False):
+                print('regla general: ',r_general.get_regla())
+                # print('if')
+                break
+
             else:
                 respuesta = (input(f'¿{condicion}? ')).lower()
-                
+
                 if (respuesta == 'si'):
                     regla_seleccionada.condiciones.update({condicion: True})
                     regla_seleccionada.actualiza_porcentaje()
@@ -84,6 +96,11 @@ def generar_preguntas(regla_seleccionada):
                     regla_seleccionada.actualiza_porcentaje()
                     regla_seleccionada.descarta_regla()
                     break
+    
+    # print('salimos del ciclo for')
+    if (isinstance(r_general, Regla)):
+        # sys.exit('termina la ejecucion de manera forzada')
+        generar_preguntas(r_general)
 
     if (regla_seleccionada.valor == 'verdadero'):
         encontrado = regla_particular(regla_seleccionada)
@@ -97,7 +114,8 @@ def regla_general(regla_seleccionada):
     for regla in reglas:
         for key in regla_seleccionada.condiciones.keys():
             if(key in regla.diagnostico):
-                return regla
+                if(regla.porcentaje < 1.0):
+                    return regla
     return False
 
 
