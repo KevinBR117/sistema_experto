@@ -26,6 +26,17 @@ entonces:
 entonces:
 *el animal es un felino
 
+6: ave
+-el animal tiene plumas
+entonces:
+*el animal es un ave
+
+7: ave
+-el animal pone huevos
+-el animal vuela
+entonces:
+*el animal es un ave
+
 8: leon
 -el animal es un mamifero
 -el animal es un carnivoro
@@ -34,3 +45,182 @@ entonces:
 -el animal tiene melena
 entonces:
 *el animal es un leon
+
+9: perro
+-el animal es un mamifero
+-el animal es un carnivoro
+-el animal ladra
+-el animal es domestico
+-el animal no razona
+entonces:
+*el animal es un perro
+
+10: gato
+-el animal es un mamifero
+-el animal es un carnivoro
+-el animal es un felino
+-el animal es domestico
+-el animal es tamaño chico
+
+11: ser humano
+-el animal es un mamifero
+-el animal es un carnivoro
+-el animal razona
+-el animal habla
+-el animal canta
+entonces:
+*el animal es un ser humano
+
+12: avestruz
+-el animal es un ave
+-el animal tiene las patas largas
+-el animal tiene el cuello largo
+entonces:
+*el animal es un avestruz
+
+13: canario
+-el animal es un ave
+-el animal es amarillo
+-el animal canta
+entonces:
+*el animal es un canario
+
+14: pantera
+-el animal es un mamifero
+-el animal es un carnivoro
+-el animal es un felino
+-el animal es negro
+entonces:
+*el animal es una pantera
+
+15: pinguino
+-el animal es un ave
+-el animal es blanco y negro
+-el animal puede nadar
+entonces:
+*el animal es un pinguino
+
+16: jirafa
+-el animal tiene las patas largas
+-el animal tiene el cuello largo
+-el animal es un herbivoro
+entonces:
+*el animal es una jirafa
+
+17: herbivoro
+-el animal come hierba
+entonces:
+*el animal es un herviboro
+
+18: oso
+-el animal es un mamifero
+-el animal es un carnivoro
+-el animal dueme mucho
+-el animal come peces
+entonces:
+*el animal es un oso
+
+19: ser inteligente
+-el animal tiene capacidad para resolver problemas
+entonces:
+*el animal es un ser inteligente
+
+20: dinosuario
+-el animal es prehistorico
+-el animal es demasiado grande
+-el animal es un carnivoro
+entonces:
+*el animal es un dinosaurio
+
+21: salvaje
+-el animal no es domestico
+entonces:
+*el animal es salvaje
+
+22: caballo
+-el animal es un herbivoro
+-el animal tiene crin
+-el animal no tiene rayas en la piel
+entonces:
+*el animal es un caballo
+
+23: zebra
+-el animal es un herbivoro
+-el animal tiene crin
+-el animal tiene rayas en la piel
+entonces:
+*el animal es una zebra
+
+24: pez
+-el animal tiene branquias
+-el animal tiene aletas
+-el animal puede nadar
+-el animal tiene escamas
+entonces:
+*el animal es un pez
+
+25: ave cardenal
+-el animal es un ave
+-el animal es de color rojo
+entonces:
+*el animal es un ave cardenal
+
+26: ballena 
+-el animal es un mamifero
+-el animal es demasiado grande
+-el animal es un pez
+entonces:
+*el animal es una ballena
+
+27: vaca
+-el animal es un mamifero
+-el animal es un herbivoro
+-el animal tiene cuernos
+entonces:
+*el animal es una vaca
+
+28: conejo
+-el animal es un mamifero
+-el animal es un herbivoro
+-come zanahorias
+-si se reprdoce muy rapido
+entonces:
+*el animal es un conejo
+
+29: chimpance
+-el animal tiene cabello
+-el animal tiene los ojos al frente
+-el animal hace imitaciones
+entonces:
+*el animal es un chimpance
+
+30: aguila
+-el animal es un carnivoro
+-el animal es un ave
+-el animal no es domestico
+entonces:
+*el animal es una aguila
+
+31: cocodrilo
+-el animal es un carnivoro
+-el animal pone huevos
+-el animal puede nadar
+-el animal no tiene las patas largas
+-el animal no es domestico
+entonces:
+*el animal es un cocodrilo
+
+32: koala
+-el animal es un mamifero
+-el animal es un herbivoro
+-el animal es un marsupial
+-el animal vive en los arboles
+entonces:
+*el animal es un koala
+
+33: raton
+-el animal es un mamifero
+-el animal es tamaño chico
+-el animal es un roedor
+entonces:
+*el animal es un raton
