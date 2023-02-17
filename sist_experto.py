@@ -38,11 +38,11 @@ def buscar_reglasSeriadas():
                         r.condiciones.update({key: True})
                 r.actualiza_porcentaje()
             
-                if (r.diagnostico in diagnostico):
-                    r.valor = 'verdadero'
-                    for key in r.condiciones.keys():
-                        r.condiciones.update({key: True})
-                    r.actualiza_porcentaje()
+                # if (r.diagnostico in diagnostico):
+                #     r.valor = 'verdadero'
+                #     for key in r.condiciones.keys():
+                #         r.condiciones.update({key: True})
+                #     r.actualiza_porcentaje()
 
     print('Reglas actualizadas: \n')
     mostrar_reglas()
@@ -115,7 +115,8 @@ def regla_general(regla_seleccionada):
         for key in regla_seleccionada.condiciones.keys():
             if(key in regla.diagnostico):
                 if(regla.porcentaje < 1.0):
-                    return regla
+                    if(omitir_mismaRegla(regla, regla_seleccionada) == True):
+                        return regla
     return False
 
 
@@ -125,6 +126,15 @@ def regla_particular(regla_seleccionada):
             if (key in regla_seleccionada.diagnostico):
                 return False
     return True
+
+
+def omitir_mismaRegla(regla_general, regla_seleccionada):    
+    for condicion in regla_seleccionada.condiciones:
+        if(regla_seleccionada.condiciones[condicion] == True):
+            if(condicion in regla_general.diagnostico):
+                return False
+    return True
+    
 
 
 encontrado = False
